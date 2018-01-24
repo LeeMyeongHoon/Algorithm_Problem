@@ -27,7 +27,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>완전탐색욕심쟁이판다</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
-    <ProjectName>[DP]욕심쟁이 판다</ProjectName>
+    <ProjectName>욕심쟁이 판다</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
