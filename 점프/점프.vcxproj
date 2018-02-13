@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{A1789C8D-4A91-4364-AD0A-F42D15800B12}</ProjectGuid>
+    <ProjectGuid>{C432A086-E81B-4997-9C3D-FF81F77E486F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>최단경로</RootNamespace>
+    <RootNamespace>점프</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="최단경로.cpp" />
+    <ClCompile Include="점프.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
