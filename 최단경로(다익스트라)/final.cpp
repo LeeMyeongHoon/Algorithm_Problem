@@ -1,3 +1,4 @@
+#ifdef FINAL
 #include <functional>
 #include <iostream>
 #include <algorithm>
@@ -85,3 +86,4 @@ int main()
 
 	return 0;
 }
+#endif // FINAL

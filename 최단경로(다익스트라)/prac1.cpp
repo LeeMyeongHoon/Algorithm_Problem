@@ -1,74 +1,93 @@
-#ifdef prac1
-#include <iostream>	
-#include <algorithm>
+#include <iostream>
 #include <vector>
+#include <algorithm>
 #include <queue>
+#include <functional>
 
-using Data = std::pair<int, int>;
-#define DIST first
-#define VERTEX second
+struct Data
+{
+	int cost;
+	int vertex;
+
+	Data(int vertex, int cost) : cost(cost), vertex(vertex) { }
+
+	bool operator>(const Data& rhs) const
+	{
+		return this->cost > rhs.cost;
+	}
+};
+
+
 
 struct Soluter
 {
 	int vertexCount;
 	int edgeCount;
-	int beginV;
+	int begin;
 
-	std::vector<std::vector<Data>> adjData;
+	std::vector<std::vector<Data>> adjs;
 
 	void Input()
 	{
-		std::cin >> vertexCount >> edgeCount >> beginV;
+		std::cin >> vertexCount >> edgeCount >> begin;
 
-		adjData.assign(vertexCount + 1, {});
+		adjs.assign(vertexCount + 1, {});
+
 		for (int cnt = 0; cnt < edgeCount; cnt++)
 		{
-			int here, next, dist;
-			std::cin >> here >> next >> dist;
-			adjData[here].push_back(Data(dist, next));
+			int from, adj, cost;
+
+			std::cin >> from >> adj >> cost;
+
+			adjs[from].emplace_back(adj, cost);
 		}
 	}
 
 	const int INF = std::numeric_limits<int>::max();
+
 	void Solve()
 	{
-		std::priority_queue<Data> dists;
+		std::priority_queue<Data, std::vector<Data>, std::greater<>> pq;
 		std::vector<int> beginTo(vertexCount + 1, INF);
-		dists.push(Data(0, beginV));
-		while (dists.empty() != true)
-		{
-			int here = dists.top().VERTEX;
-			int beginToHere = dists.top().DIST;
-			dists.pop();
 
-			if (beginToHere > beginTo[here])
+		pq.emplace(begin, 0);
+		beginTo[begin] = 0;
+
+		while (!pq.empty())
+		{
+			int here = pq.top().vertex;
+			int beginToHere = pq.top().cost;
+			pq.pop();
+
+			if (beginTo[here] < beginToHere)
 			{
 				continue;
 			}
 
-			for (auto& adj : adjData[here])
+			for (auto& adj : adjs[here])
 			{
-				int nextV = adj.VERTEX;
-				int hereToNext = adj.DIST;
+				int next = adj.vertex;
+				int hereToNext = adj.cost;
 
-				int newDist = beginToHere + hereToNext;
-				if (newDist < beginTo[nextV])
+				int beginToNext = beginToHere + hereToNext;
+
+				if (beginToNext < beginTo[next])
 				{
-					beginTo[nextV] = newDist;
-					dists.push(Data(newDist, nextV));
+					beginTo[next] = beginToNext;
+					pq.emplace(next, beginToNext);
 				}
 			}
-		}
 
-		for (int dstV = 1; dstV <= vertexCount; dstV++)
+		}
+		for (int i = 1; i <= vertexCount; i++)
 		{
-			if (beginTo[dstV] == INF)
+			if (beginTo[i] != INF)
 			{
-				std::cout << "INF" << '\n';
+				std::cout << beginTo[i] << '\n';
 			}
 			else
 			{
-				std::cout << beginTo[dstV] << '\n';
+				std::cout << "INF" << '\n';
 			}
 		}
 	}
@@ -82,4 +101,3 @@ int main()
 
 	return 0;
 }
-#endif // prac1
