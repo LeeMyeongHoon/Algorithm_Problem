@@ -6,14 +6,14 @@
 
 struct Data
 {
-	int cost;
-	int vertex;
+	int j;
+	int i;
 
-	Data(int vertex, int cost) : cost(cost), vertex(vertex) { }
+	Pos(int vertex, int cost) : j(cost), i(vertex) { }
 
-	bool operator>(const Data& rhs) const
+	bool operator>(const Pos& rhs) const
 	{
-		return this->cost > rhs.cost;
+		return this->j > rhs.j;
 	}
 };
 
@@ -25,7 +25,7 @@ struct Soluter
 	int edgeCount;
 	int begin;
 
-	std::vector<std::vector<Data>> adjs;
+	std::vector<std::vector<Pos>> adjs;
 
 	void Input()
 	{
@@ -39,7 +39,7 @@ struct Soluter
 
 			std::cin >> from >> adj >> cost;
 
-			adjs[from].emplace_back(adj, cost);
+			cost[from].emplace_back(adj, cost);
 		}
 	}
 
@@ -47,7 +47,7 @@ struct Soluter
 
 	void Solve()
 	{
-		std::priority_queue<Data, std::vector<Data>, std::greater<>> pq;
+		std::priority_queue<Pos, std::vector<Pos>, std::greater<>> pq;
 		std::vector<int> beginTo(vertexCount + 1, INF);
 
 		pq.emplace(begin, 0);
@@ -55,8 +55,8 @@ struct Soluter
 
 		while (!pq.empty())
 		{
-			int here = pq.top().vertex;
-			int beginToHere = pq.top().cost;
+			int here = pq.top().i;
+			int beginToHere = pq.top().j;
 			pq.pop();
 
 			if (beginTo[here] < beginToHere)
@@ -66,8 +66,8 @@ struct Soluter
 
 			for (auto& adj : adjs[here])
 			{
-				int next = adj.vertex;
-				int hereToNext = adj.cost;
+				int next = adj.i;
+				int hereToNext = adj.j;
 
 				int beginToNext = beginToHere + hereToNext;
 

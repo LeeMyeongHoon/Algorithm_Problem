@@ -6,7 +6,7 @@
 const int dx[8] = { +1,+1,-1,-1,+2,-2,+2,-2 };
 const int dy[8] = { +2,-2,+2,-2,+1,+1,-1,-1 };
 
-struct Data
+struct Pos
 {
 	int i, j, move;
 };
@@ -27,12 +27,12 @@ struct Soluter
 
 		std::vector<std::vector<bool>> isVisited(size, std::vector<bool>(size, false));
 
-		std::deque<Data> queue;
+		std::deque<Pos> queue;
 		queue.push_back({ beginI, beginJ, 0 });
 
 		for (;;)
 		{
-			Data data = queue.front();
+			Pos data = queue.front();
 			queue.pop_front();
 
 
