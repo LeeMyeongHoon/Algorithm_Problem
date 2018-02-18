@@ -6,9 +6,9 @@
 const int dx[8] = { +1,+1,-1,-1,+2,-2,+2,-2 };
 const int dy[8] = { +2,-2,+2,-2,+1,+1,-1,-1 };
 
-struct Pos
+struct Data
 {
-	int i, j, move;
+	int i, cost, move;
 };
 
 struct Soluter
@@ -32,11 +32,11 @@ struct Soluter
 
 		for (;;)
 		{
-			Pos data = queue.front();
+			Data data = queue.front();
 			queue.pop_front();
 
 
-			if (data.i == keyI && data.j == keyJ)
+			if (data.i == keyI && data.cost == keyJ)
 			{
 				std::cout << data.move << '\n';
 				return;
@@ -45,7 +45,7 @@ struct Soluter
 			for (int i = 0; i < 8; i++)
 			{
 				int nextI = data.i + dy[i];
-				int nextJ = data.j + dx[i];
+				int nextJ = data.cost + dx[i];
 				if (nextI >= 0 && nextJ >= 0 && nextI < size && nextJ < size && !isVisited[nextI][nextJ])
 				{
 					queue.push_back({ nextI, nextJ, data.move + 1 });

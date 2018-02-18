@@ -10,12 +10,12 @@ enum Tomato
 	VALID = 1
 };
 
-struct Pos
+struct Data
 {
-	int i, j, count;
+	int i, cost, count;
 
-	Pos() = default;
-	Pos(int i, int j, int count) : i(i), j(j), count(count) {}
+	Data() = default;
+	Data(int i, int j, int count) : i(i), cost(j), count(count) {}
 };
 
 struct Soluter
