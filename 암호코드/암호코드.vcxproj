@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{9352B561-D7FE-4EA7-AE9F-4482E21C1B9C}</ProjectGuid>
+    <ProjectGuid>{A27DD20E-6B79-4A63-84A2-801F1208DB35}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>용돈관리</RootNamespace>
+    <RootNamespace>암호코드</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="용돈 관리.cpp" />
+    <ClCompile Include="sol.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
